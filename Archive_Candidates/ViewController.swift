@@ -9,6 +9,48 @@
 import Cocoa
 
 class ViewController: NSViewController {
+    
+    
+    
+    
+
+    @IBOutlet weak var numberDays: NSTextField!
+    
+    @IBAction func ageChanged(_ sender: Any) {
+       resultsMessage.stringValue = "Liste des dossiers de plus de " + numberDays.stringValue + " jours"
+        
+    }
+    
+    @IBAction func folderPath(_ sender: NSTextField) {
+    }
+    
+    
+    
+    @IBOutlet weak var resultsList: NSScrollView!
+    
+
+    @IBOutlet weak var resultsMessage: NSTextField!
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +63,18 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
