@@ -22,6 +22,25 @@ class ViewController: NSViewController {
     }
     
     @IBAction func folderPath(_ sender: NSTextField) {
+        //let directoryURL = folderPath.stringValue
+        let calendar = Calendar.current
+        let aWeekAgo = calendar.date(byAdding: .day, value: -7, to: Date())!
+        
+        do {
+            let directoryContent = try fileManager.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: [.creationDateKey], options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])
+            for url in directoryContent {
+                let resources = try url.resourceValues(forKeys: [.creationDateKey])
+                let creationDate = resources.creationDate!
+                if creationDate < aWeekAgo {
+                    print(url)
+                    // do somthing with the found files
+                }
+            }
+        }
+        catch {
+            print(error)
+        }
+        
     }
     
     
