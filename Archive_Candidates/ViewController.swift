@@ -8,26 +8,42 @@
 
 import Cocoa
 
+
 class ViewController: NSViewController {
     
     
     
+    @IBOutlet weak var baseDirectory: NSTextField!
     
 
     @IBOutlet weak var numberDays: NSTextField!
     
-    @IBAction func ageChanged(_ sender: Any) {
-       resultsMessage.stringValue = "Liste des dossiers de plus de " + numberDays.stringValue + " jours"
-        
-    }
     
-    @IBAction func folderPath(_ sender: NSTextField) {
-        //let directoryURL = folderPath.stringValue
+     @IBOutlet weak var resultsList: NSScrollView!
+    
+
+    @IBOutlet weak var resultsMessage: NSTextField!
+    
+
+       @IBAction func ageChanged(_ sender: Any) {
+       resultsMessage.stringValue = "Liste des dossiers de plus de " + numberDays.stringValue + " jours"
+    }
+
+
+
+    
+    @IBAction func sourceFolder(_ sender: Any) {
+
+/*
+        //let DirectoryURL = NSURL(string: baseDirectory.stringValue)
+        let DirectoryURL = baseDirectory.stringValue
+
         let calendar = Calendar.current
-        let aWeekAgo = calendar.date(byAdding: .day, value: -7, to: Date())!
+        //let aWeekAgo = calendar.date(byAdding: .day, value: -7, to: Date())!
+        let age = calendar.date(byAdding: .day, value: -2, to: Date())!
         
         do {
-            let directoryContent = try fileManager.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: [.creationDateKey], options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])
+            let directoryContent = try FileManager.contentsOfDirectory(at: DirectoryURL, includingPropertiesForKeys: [.creationDateKey], options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])
             for url in directoryContent {
                 let resources = try url.resourceValues(forKeys: [.creationDateKey])
                 let creationDate = resources.creationDate!
@@ -40,17 +56,12 @@ class ViewController: NSViewController {
         catch {
             print(error)
         }
-        
+    
     }
     
     
     
-    @IBOutlet weak var resultsList: NSScrollView!
-    
-
-    @IBOutlet weak var resultsMessage: NSTextField!
-    
-    
+    */   
     
     
     
