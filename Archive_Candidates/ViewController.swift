@@ -33,18 +33,18 @@ class ViewController: NSViewController {
 
     
     @IBAction func sourceFolder(_ sender: Any) {
-
+        
         let daysAgo = numberDays.intValue * -1
         let fileManager = FileManager.default
         let DirectoryURL = NSURL(string: baseDirectory.stringValue)
         //let DirectoryURL = baseDirectory.stringValue
-
+        
         let calendar = Calendar.current
         //let aWeekAgo = calendar.date(byAdding: .day, value: -7, to: Date())!
         let age = calendar.date(byAdding: .day, value: Int(daysAgo), to: Date())!
         
         do {
-            let directoryContent = try fileManager.contentsOfDirectory(at: DirectoryURL! as URL, includingPropertiesForKeys: [.creationDateKey], options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])
+            let directoryContent = try fileManager.contentsOfDirectory(at: DirectoryURL as! URL, includingPropertiesForKeys: [.creationDateKey], options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])
             for url in directoryContent {
                 let resources = try url.resourceValues(forKeys:[.contentModificationDateKey])
                 //let resources = try url.resourceValues(forKeys:[.creationDateKey])
@@ -59,7 +59,7 @@ class ViewController: NSViewController {
         catch {
             print(error)
         }
-    
+        
     }
     
     
