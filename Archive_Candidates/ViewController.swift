@@ -44,7 +44,7 @@ class ViewController: NSViewController {
         let age = calendar.date(byAdding: .day, value: Int(daysAgo), to: Date())!
         
         do {
-            let directoryContent = try fileManager.contentsOfDirectory(at: DirectoryURL as! URL, includingPropertiesForKeys: [.creationDateKey], options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])
+            let directoryContent = try fileManager.contentsOfDirectory(at: DirectoryURL! as URL, includingPropertiesForKeys: [.creationDateKey], options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])
             for url in directoryContent {
                 let resources = try url.resourceValues(forKeys:[.contentModificationDateKey])
                 //let resources = try url.resourceValues(forKeys:[.creationDateKey])
