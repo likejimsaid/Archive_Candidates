@@ -735,13 +735,15 @@
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <action selector="sourceFolder:" target="XfG-lQ-9wD" id="5A7-Zv-KmS"/>
+                                </connections>
                             </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="baseDirectory" destination="dmb-gg-aUo" id="3Kx-ld-uRu"/>
                         <outlet property="numberDays" destination="bFB-JT-bGe" id="C8J-gA-MUg"/>
-                        <outlet property="resultMessage" destination="3VC-zU-ifX" id="wZI-8v-Xqy"/>
                         <outlet property="resultsMessage" destination="3VC-zU-ifX" id="VPu-lH-t2E"/>
                     </connections>
                 </viewController>

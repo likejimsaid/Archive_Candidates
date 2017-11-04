@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Foundation
 
 
 class ViewController: NSViewController {
@@ -18,48 +19,55 @@ class ViewController: NSViewController {
 
     @IBOutlet weak var numberDays: NSTextField!
     
-    
-     @IBOutlet weak var resultsList: NSScrollView!
-    
 
     @IBOutlet weak var resultsMessage: NSTextField!
-    
 
        @IBAction func ageChanged(_ sender: Any) {
-       resultsMessage.stringValue = "Liste des dossiers de plus de " + numberDays.stringValue + " jours"
+       resultsMessage.stringValue = "Liste des dossiers de plus de " + numberDays.stringValue + " jours."
     }
 
 
 
     
-    @IBAction func sourceFolder(_ sender: Any) {
+    
+    @IBAction func sourceFolder(_ sender: NSTextField) {
         
         let daysAgo = numberDays.intValue * -1
-        let fileManager = FileManager.default
-        let DirectoryURL = NSURL(string: baseDirectory.stringValue)
-        //let DirectoryURL = baseDirectory.stringValue
         
+        let fileManager = FileManager.default
+        
+        
+        let DirectoryURL = URL(fileURLWithPath: baseDirectory.stringValue)
+
         let calendar = Calendar.current
-        //let aWeekAgo = calendar.date(byAdding: .day, value: -7, to: Date())!
         let age = calendar.date(byAdding: .day, value: Int(daysAgo), to: Date())!
         
+        
+        
+        
+        
         do {
-            let directoryContent = try fileManager.contentsOfDirectory(at: DirectoryURL as! URL, includingPropertiesForKeys: [.creationDateKey], options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])
-            for url in directoryContent {
-                let resources = try url.resourceValues(forKeys:[.contentModificationDateKey])
-                //let resources = try url.resourceValues(forKeys:[.creationDateKey])
-                //let creationDate = resources.creationDate!
-                let modificationDate = resources.contentModificationDate!
-                if modificationDate <= age {
+            let enumerator = fileManager.enumerator(at: DirectoryURL, includingPropertiesForKeys: [.creationDateKey], options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles], errorHandler: { (url, error) -> Bool in
+                print("An error \(error) occurred at \(url)")
+                return true
+            })
+            while let url = enumerator?.nextObject() as? URL {
+                let resources = try url.resourceValues(forKeys: [.creationDateKey])
+                let creationDate = resources.creationDate!
+                if creationDate < age {
                     print(url)
                     // do somthing with the found files
                 }
             }
+            
         }
         catch {
             print(error)
         }
         
+        
+        
+        
     }
     
     
@@ -73,8 +81,7 @@ class ViewController: NSViewController {
     
     
     
-    
-    
+   
     
     
     
